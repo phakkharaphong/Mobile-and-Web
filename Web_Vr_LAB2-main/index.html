@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+      </head>
+      <body>
+        <a-scene>
+            <a-assets>
+                <img id="room" src="img/back.jpg">
+                <img id="nuy" src="img/man.jpg">
+                <img id="nuy2" src="img/man2.png">
+                <img id="skin" src="img/min.jpeg">
+        
+            </a-assets>
+            <a-text value="Work 2" position="0 -5 -2.2" animation="property: position; to: 0 1.5 -2.2; dur: 2000; easing: linear; loop: false"></a-text>
+            <a-text value="643020632-1" position="2 -5 -4.5" animation="property: position; to: 0 2.2 -4.4; dur: 2000; easing: linear; loop: false"></a-text>
+            <a-text value="Phakkharaphong Charoenphon" color="#FFFF00" position="-5 1 -2"
+            animation="property: position; to: -1 1 -2.2; dur: 8000; easing: linear; loop: false"
+            ></a-text>
+            <a-camera>
+                <a-cursor></a-cursor>
+              </a-camera>
+            <a-sky src="#room" radius="40"></a-sky>
+
+            <a-box position="0 0 0" 
+            width="1" height="1"
+            animation="property: position; to: 0 1 -5; dur: 2000; easing: linear" 
+            animation__2="property: rotation;; to: 0 360 0; dur: 5000; loop: true;" 
+            src="#nuy"
+            ></a-box>
+            <a-box position="-10 0.75 -10" 
+                animation="property: position; to: 2 1 1; dur: 10000; easing: linear; loop: true;"
+                animation__2="property: rotation; to: 0 90 90; dur: 500; loop: true;" 
+                src="#nuy2"
+         ></a-box> 
+           
+         <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" src="#skin"></a-plane>  
+        </a-scene>
+      </body>
+</html>
