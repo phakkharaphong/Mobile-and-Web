@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-enviroment-component@1.5.0/dist/aframe-environment-component.min.js"></script>
+    <script src="model-viewer.js"></script>
+    <script src="hide-on-enter-ar.js"></script>
+    <script src="ar-shadows.js"></script>
+    <script src="ar-hit-test.js"></script>
+
+</head>
+<body>
+    <a-scene>
+        
+        <!--Import Img-->
+        <a-assets>
+            <img id="plane" src="img/backg.jpg">
+                <a-asset-item id="model" src="img/3d icon youtube.glb"></a-asset-item>
+                <a-asset-item id="dino" src="img/dinosaur_fbx.glb"></a-asset-item>
+                 <!-- <a-asset-item id="dino2" src="img/tricera (1).glb"></a-asset-item>-->
+                <a-asset-item id="dino2"
+                src="img/tricera (1).glb"
+                response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+
+                <a-asset-item id="dino3"
+                src="img/velociraptor.glb"
+                response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+
+                <a-asset-item id="poly_tree"
+                src="img/low_poly_vegetation_for_games.glb"
+                response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+                <a-asset-item id="rock"
+                src="img/stranska_rock_1.glb"
+                response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+                <a-asset-item id="glass"
+                src="img/radish_leaf_01.glb"
+                response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+
+                <a-asset-item id="treelow"
+                src="img/tree.glb"
+                response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+        </a-assets>
+        
+        <a-camera camera="" position="0.32 2.05166 17.80679" rotation="" look-controls="" wasd-controls="" data-aframe-inspector-original-camera="" scale="1.02 1 1">
+            <a-cursor material="" raycaster="" cursor="" geometry=""></a-cursor>
+        </a-camera>
+        
+
+        <!--Model-->
+        <!--position= ช่องแรกคือการขยับตามระะนาบ ช่องสองคือขยับขึ้นลง-->
+          <!---                 -->
+        <a-entity position="1 4 -4">
+            <a-gltf-model src="#model"  rotation="25.810000000000002 0.12 -1.05"   position="0.06 0.79 0.729" scale="1.44 1.13 1.03" scale="1.13 1.13 1.03"></a-gltf-model>
+          </a-entity>
+
+          <a-entity position="1 4 -4">
+            <a-gltf-model src="#dino"   rotation="7.82 -56.82 -0.43" position="-9.55968 0.99944 -8.06358" scale="8.04 12.55 10.55"></a-gltf-model>
+          </a-entity>
+
+          <a-entity position="1 4 -4">
+            <a-gltf-model src="#dino2"  rotation="9.29 -86.41 0.36" position="19.0328 -3.25535 2.62387" scale="3.34 2.94 2.91"></a-gltf-model>
+          </a-entity>
+
+          <a-entity position="1 4 -4">
+            <a-gltf-model src="#dino3" rotation="4.95 -367.97 -0.43" position="0.709 -2.893 -0.352" scale="1.2 0.79 1.89"></a-gltf-model>
+          </a-entity>
+          <a-entity position="1 4 -4">
+            <a-gltf-model src="#poly_tree"    rotation="4.95 -367.97 -0.43" position="7.95566 -4.372 0.33912" scale="1.45 1.27 1.57" ></a-gltf-model>
+          </a-entity>
+
+          <a-entity position="1 4 -4">
+            <a-gltf-model src="#rock"  rotation="2.64 -300.62 -1.42" position="-6.544 -5.69004 -20.167" scale="-1.09 1.26 -0.88" ></a-gltf-model>
+          </a-entity>
+          <a-entity position="1 4 -4">
+            <a-gltf-model src="#glass"   rotation="2.64 -300.62 -1.42" position="-5.61122 -2.70969 9.51923" scale="-0.18 0.3 -0.3" ></a-gltf-model>
+          </a-entity>
+          <a-entity position="1 4 -4">
+            <a-gltf-model src="#treelow"   rotation="2.64 -300.62 -1.42" position="-25.07374 -3.0346 -23.31861" scale="-0.27 0.17 -0.26" ></a-gltf-model>
+          </a-entity>
+
+          
+          <!--End Model-->
+        <!--พื้น-->
+        <a-plane position="0 1 -4" rotation="-90 0 0" width="50" height="40"  color="green" src="#plane"></a-plane>  
+        
+    </a-scene>
+  
+</body>
+</html>
