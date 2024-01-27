@@ -11,6 +11,29 @@
     <script src="ar-shadows.js"></script>
     <script src="ar-hit-test.js"></script>
 
+    <style>
+      /* สไตล์สำหรับซ่อน popup ตั้งแต่เริ่มต้น */
+      #popup {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: center;
+      }
+  
+      #popup img {
+        max-width: 80%;
+        max-height: 80%;
+        border: 2px solid #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+    </style>
+
 </head>
 <body>
     <a-scene>
@@ -19,6 +42,7 @@
         <a-assets>
             <img id="plane" src="img/backg.jpg">
             <img id="footer" src="img/foot.png">
+            <img id="detail-Trex" src="img/testimg.png">
                 <a-asset-item id="model" src="img/3d icon youtube.glb"></a-asset-item>
                 <a-asset-item id="dino" src="img/dinosaur_fbx.glb"></a-asset-item>
                  <!-- <a-asset-item id="dino2" src="img/tricera (1).glb"></a-asset-item>-->
@@ -65,10 +89,21 @@
                 src="img/raptor_pen_tower_v1.glb"
                 response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
 
+                <a-asset-item id="tosur"
+                src="img/jurassic_park_3_ceratosarusus.glb"
+                response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+
+                <a-asset-item id="cage"
+                src="img/jurassic_park_cage.glb"
+                response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+
+                <a-asset-item id="stego"
+                src="img/overpowered_stegosaurus.glb"
+                response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
 
         </a-assets>
         
-        <a-camera camera="" position="-30.38025 27.92686 116.55266" rotation="-5.27121171520357 -1.604281826366457 0" look-controls="" wasd-controls="" data-aframe-inspector-original-camera="" scale="1.02 1 1">
+        <a-camera id="mainCamera" camera="" position="-30.38025 27.92686 116.55266" rotation="-5.27121171520357 -1.604281826366457 0" look-controls="" wasd-controls="" data-aframe-inspector-original-camera="" scale="1.02 1 1">
           <a-cursor material="" raycaster="" cursor="" geometry=""></a-cursor>
       </a-camera>
         
@@ -76,37 +111,145 @@
         <!--Model-->
         <!--position= ช่องแรกคือการขยับตามระะนาบ ช่องสองคือขยับขึ้นลง-->
           <!---                 -->
-          <a-gltf-model src="#model" rotation="6.04 0.12 -1.05" position="-11.11802 22.88727 -38.87527" scale="4.86 4.05 1.88" gltf-model="img/3d icon youtube.glb"></a-gltf-model>
-
-          <a-entity position="1 4 -4">
-            <a-gltf-model src="#dino"   rotation="7.82 -56.82 -0.43" position="-9.55968 0.99944 -8.06358" scale="8.04 12.55 10.55"></a-gltf-model>
-          </a-entity>
-
-          <a-entity position="1 4 -4">
-            <a-gltf-model src="#dino2"  rotation="9.29 -86.41 0.36" position="19.0328 -3.25535 2.62387" scale="3.34 2.94 2.91"></a-gltf-model>
-          </a-entity>
-
-          <a-gltf-model src="#carnotaurus" rotation="9.91 -64.52 0.36" rotation="9.91 -64.52 0.36" position="-23.05019 19.52366 -26.78816" scale="3.34 2.94 2.91" gltf-model="img/carnotaurus_dinosaur.glb"></a-gltf-model>
-
-          <a-entity position="1 4 -4">
-            <a-gltf-model src="#dino3" rotation="4.95 -367.97 -0.43" position="0.709 -2.893 -0.352" scale="1.2 0.79 1.89"></a-gltf-model>
-          </a-entity>
-          <a-entity position="1 4 -4">
-            <a-gltf-model src="#poly_tree"    rotation="4.95 -367.97 -0.43" position="7.95566 -4.372 0.33912" scale="1.45 1.27 1.57" ></a-gltf-model>
-          </a-entity>
-
-          <a-entity position="1 4 -4">
-            <a-gltf-model src="#rock"  rotation="2.64 -300.62 -1.42" position="-6.544 -5.69004 -20.167" scale="-1.09 1.26 -0.88" ></a-gltf-model>
-          </a-entity>
-
-          <a-gltf-model src="#rock" rotation="-3.44 -461.32 -1.42" position="-52.85049 -0.93738 -19.65831" cale="-1.09 1.26 -0.88" gltf-model="img/stranska_rock_1.glb" scale="1 1 0.92">
+          <a-gltf-model 
+              src="#model" 
+              rotation="6.04 0.12 -1.05" 
+              position="-11.11802 22.88727 -38.87527" 
+              scale="4.86 4.05 1.88" 
+              gltf-model="img/3d icon youtube.glb"
+              id="myModel"
+              onclick="movecame(id)"
+              >    
           </a-gltf-model>
 
+          <a-plane 
+              width="2" 
+              height="1.5" 
+              material="" 
+              geometry="" 
+              position="-18.078 2.59141 -4.826" 
+              scale="2.31 1.95 0.09" src="#detail-Trex"
+              id="detail_Trex"
+              onclick="movecame(id)"
+              >
+          </a-plane>
+
+
           <a-entity position="1 4 -4">
-            <a-gltf-model src="#glass"   rotation="2.64 -300.62 -1.42" position="-5.61122 -2.70969 9.51923" scale="-0.18 0.3 -0.3" ></a-gltf-model>
+            <a-gltf-model 
+              src="#dino"   
+              rotation="7.82 -56.82 -0.43" 
+              position="-9.56 1.97581 -8.064"
+              scale="13.04 16.69 13.34"
+              id="Trex"
+              onclick="movecame(id)"
+              >
+            </a-gltf-model>
+            <a-text 
+              font="kelsonsans"
+              value="TREX" 
+              width="6" 
+              position="-16.70076 -0.73516 -0.7172"
+              rotation="0 14.999999999999998 0"
+              scale="5.03 3.77 1.67"
+            ></a-text>
           </a-entity>
+
+
           <a-entity position="1 4 -4">
-            <a-gltf-model src="#treelow"   rotation="2.64 -300.62 -1.42" position="-25.07374 -3.0346 -23.31861" scale="-0.27 0.17 -0.26" ></a-gltf-model>
+            <a-gltf-model 
+                src="#dino2"  
+                rotation="9.29 -86.41 0.36" 
+                position="19.0328 -3.25535 2.62387" 
+                scale="3.34 2.94 2.91" 
+            ></a-gltf-model>
+          </a-entity>
+
+          <a-gltf-model  
+              src="#carnotaurus" 
+              rotation="9.91 -64.52 0.36" 
+              rotation="9.91 -64.52 0.36" 
+              position="-23.05019 19.52366 -26.78816" 
+              scale="3.34 2.94 2.91" 
+              gltf-model="img/carnotaurus_dinosaur.glb"
+              id="carnots"
+              onclick="movecame(id)"
+          ></a-gltf-model>
+
+          <a-gltf-model  
+              src="#tosur" 
+              rotation="6.74 -43.2 0.27" 
+              position="-62.61773 0.95232 9.12496" 
+              scale="0.07 0.05 0.06" 
+              gltf-model="img/jurassic_park_3_ceratosarusus.glb"
+              id="tosur"
+              onclick="movecame(id)"
+          ></a-gltf-model>
+
+          <a-entity position="1 4 -4">
+            <a-gltf-model 
+              src="#dino3" 
+              rotation="4.95 -367.97 -0.43" 
+              position="0.709 -2.893 -0.352" 
+              scale="1.2 0.79 1.89"
+          ></a-gltf-model>
+          </a-entity>
+
+          <a-entity position="1 4 -4">
+            <a-gltf-model 
+              src="#stego" 
+              rotation="4.95 -367.97 -0.43" 
+              position="48.72849 -4.95683 90.20783" 
+              scale="6.07 4.11 6.41" 
+          ></a-gltf-model>
+          </a-entity>
+
+
+
+          <a-entity position="1 4 -4">
+            <a-gltf-model 
+              src="#poly_tree"    
+              rotation="4.95 -367.97 -0.43" 
+              position="7.95566 -4.372 0.33912" 
+              scale="1.45 1.27 1.57" 
+            ></a-gltf-model>
+          </a-entity>
+
+          <a-entity position="1 4 -4">
+            <a-gltf-model 
+                src="#rock"  
+                rotation="2.64 -300.62 -1.42" 
+                position="-6.544 -5.69004 -20.167" 
+                scale="-1.09 1.26 -0.88" 
+            ></a-gltf-model>
+          </a-entity>
+
+          <!--  -->
+          <a-gltf-model 
+              src="#rock" 
+              rotation="-3.44 -461.32 -1.42" 
+              position="-52.85049 -0.93738 -19.65831" 
+              cale="-1.09 1.26 -0.88" 
+              gltf-model="img/stranska_rock_1.glb" 
+              scale="1 1 0.92" 
+          ></a-gltf-model>
+
+          <a-entity position="1 4 -4">
+            <a-gltf-model 
+                src="#glass"   
+                rotation="2.64 -300.62 -1.42" 
+                position="-5.61122 -2.70969 9.51923" 
+                scale="-0.18 0.3 -0.3" 
+            ></a-gltf-model>
+          </a-entity>
+
+          <a-entity position="1 4 -4">
+            <a-gltf-model 
+              src="#treelow"   
+              rotation="2.64 -300.62 -1.42" 
+              position="-25.07374 -3.0346 -23.31861" 
+              scale="-0.27 0.17 -0.26" 
+            ></a-gltf-model>
           </a-entity>
 
             <!--Electic ALL-->
@@ -117,6 +260,16 @@
           <a-gltf-model src="#electric" rotation="-7.169999999999999 -629.88 0.01" position="74.25364 1.874 15.9495" scale="-4.11 2.01 -3.2" gltf-model="img/electric_fence_jurassic_park.glb"></a-gltf-model>
           <a-gltf-model src="#electric" rotation="-6.43 -540 0.01" position="34.77888 1.874 57.12344" scale="-4.13 2.01 -3.2" gltf-model="img/electric_fence_jurassic_park.glb"></a-gltf-model>
           <!--End Electic-->
+
+
+          <a-gltf-model 
+              src="#cage" 
+              rotation="-0.22 -540 0.01"  
+              position="57.33 -0.4723 98.68123" 
+              scale="0.08 0.05 -0.2" 
+              gltf-model="img/jurassic_park_cage.glb"
+          ></a-gltf-model>
+
 
           <!--Tower-->
 
@@ -130,10 +283,25 @@
         <a-plane position="49.931 1 35.85144" rotation="-90 0 0" width="50" height="40" color="green" src="#plane" material="" geometry=""></a-plane> 
         <a-plane position="-49.93667 1 35.76318" rotation="-90 0 0" width="50" height="40"  color="green" src="#plane" material="" geometry=""></a-plane> 
         <a-plane position="0.004 1 35.9546" rotation="-90 0 0" width="50" height="40"  color="green" src="#plane" material="" geometry=""></a-plane>
+        <a-plane position="58.74976 -1.24635 101.841" rotation="-90 0 0" width="50" height="40" color="green" src="#plane" material="" geometry="" scale="1.11 1.76 1.34"></a-plane>
         <a-plane position="-10.30631 1 76.85676" rotation="-89.92 -2.15 0" width="50" height="40" src="#footer" material="" geometry="" scale="1.61 1 1"></a-plane>
-
         
-    </a-scene>
-  
+      </a-scene>
+      <!--FuntionScrip-->
+      <script>
+        // หากคลิกที่โมเดล 3D
+        function movecame(id){
+            document.getElementById(id).addEventListener('click', function () {
+            // ดึงตำแหน่งของโมเดล
+            var modelPosition = this.getAttribute('position');
+        
+            // ปรับตำแหน่งของ a-camera ให้เท่ากับตำแหน่งของโมเดล
+            document.getElementById('mainCamera').setAttribute('position', modelPosition.x + ' ' + modelPosition.y + ' ' + modelPosition.z);
+          });
+        }
+       
+      </script>
+      
 </body>
 </html>
+
