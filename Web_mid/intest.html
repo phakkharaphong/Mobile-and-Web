@@ -42,6 +42,10 @@
                 <a-asset-item id="treelow"
                 src="img/tree.glb"
                 response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+                <a-asset-item id="treelow"
+                src="img/tree.glb"
+                response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+                
         </a-assets>
         
         <a-camera camera="" position="0.32 2.05166 17.80679" rotation="" look-controls="" wasd-controls="" data-aframe-inspector-original-camera="" scale="1.02 1 1">
@@ -74,6 +78,10 @@
           <a-entity position="1 4 -4">
             <a-gltf-model src="#rock"  rotation="2.64 -300.62 -1.42" position="-6.544 -5.69004 -20.167" scale="-1.09 1.26 -0.88" ></a-gltf-model>
           </a-entity>
+
+          <a-gltf-model src="#rock" rotation="-3.44 -461.32 -1.42" position="-52.85049 -0.93738 -19.65831" cale="-1.09 1.26 -0.88" gltf-model="img/stranska_rock_1.glb" scale="1 1 0.92">
+          </a-gltf-model>
+
           <a-entity position="1 4 -4">
             <a-gltf-model src="#glass"   rotation="2.64 -300.62 -1.42" position="-5.61122 -2.70969 9.51923" scale="-0.18 0.3 -0.3" ></a-gltf-model>
           </a-entity>
@@ -84,7 +92,8 @@
           
           <!--End Model-->
         <!--พื้น-->
-        <a-plane position="0 1 -4" rotation="-90 0 0" width="50" height="40"  color="green" src="#plane"></a-plane>  
+        <a-plane position="0 1 -4" rotation="-90 0 0" width="50" height="40"  color="green" src="#plane"></a-plane> 
+        <a-plane position="-49.97548 1 -4" rotation="-90 0 0" width="50" height="40" color="green" src="#plane" material="" geometry=""></a-plane> 
         
     </a-scene>
   
