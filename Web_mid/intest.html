@@ -42,10 +42,19 @@
                 <a-asset-item id="treelow"
                 src="img/tree.glb"
                 response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
-                <a-asset-item id="treelow"
-                src="img/tree.glb"
+
+                <a-asset-item id="carnotaurus"
+                src="img/carnotaurus_dinosaur.glb"
                 response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
-                
+
+                <a-asset-item id="park_gate"
+                src="img/jurassic_park_gate.glb"
+                response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+
+                <a-asset-item id="park_gate"
+                src="img/jurassic_park_gate.glb"
+                response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+
         </a-assets>
         
         <a-camera camera="" position="0.32 2.05166 17.80679" rotation="" look-controls="" wasd-controls="" data-aframe-inspector-original-camera="" scale="1.02 1 1">
@@ -68,6 +77,8 @@
             <a-gltf-model src="#dino2"  rotation="9.29 -86.41 0.36" position="19.0328 -3.25535 2.62387" scale="3.34 2.94 2.91"></a-gltf-model>
           </a-entity>
 
+          <a-gltf-model src="#carnotaurus" rotation="9.91 -64.52 0.36" rotation="9.91 -64.52 0.36" position="-23.05019 19.52366 -26.78816" scale="3.34 2.94 2.91" gltf-model="img/carnotaurus_dinosaur.glb"></a-gltf-model>
+
           <a-entity position="1 4 -4">
             <a-gltf-model src="#dino3" rotation="4.95 -367.97 -0.43" position="0.709 -2.893 -0.352" scale="1.2 0.79 1.89"></a-gltf-model>
           </a-entity>
@@ -89,11 +100,15 @@
             <a-gltf-model src="#treelow"   rotation="2.64 -300.62 -1.42" position="-25.07374 -3.0346 -23.31861" scale="-0.27 0.17 -0.26" ></a-gltf-model>
           </a-entity>
 
+          <a-gltf-model src="#park_gate" rotation="3.51 -540.39 -0.85" position="-13.996 9.90877 56.962" scale="-2.22 2.01 -3.2" gltf-model="img/jurassic_park_gate.glb"></a-gltf-model>
+
           
           <!--End Model-->
         <!--พื้น-->
         <a-plane position="0 1 -4" rotation="-90 0 0" width="50" height="40"  color="green" src="#plane"></a-plane> 
         <a-plane position="-49.97548 1 -4" rotation="-90 0 0" width="50" height="40" color="green" src="#plane" material="" geometry=""></a-plane> 
+        <a-plane position="-49.93667 1 35.76318" rotation="-90 0 0" width="50" height="40"  color="green" src="#plane" material="" geometry=""></a-plane> 
+        <a-plane position="0.004 1 35.9546" rotation="-90 0 0" width="50" height="40"  color="green" src="#plane" material="" geometry=""></a-plane> 
         
     </a-scene>
   
