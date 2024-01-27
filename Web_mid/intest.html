@@ -18,6 +18,7 @@
         <!--Import Img-->
         <a-assets>
             <img id="plane" src="img/backg.jpg">
+            <img id="footer" src="img/foot.png">
                 <a-asset-item id="model" src="img/3d icon youtube.glb"></a-asset-item>
                 <a-asset-item id="dino" src="img/dinosaur_fbx.glb"></a-asset-item>
                  <!-- <a-asset-item id="dino2" src="img/tricera (1).glb"></a-asset-item>-->
@@ -55,19 +56,27 @@
                 src="img/jurassic_park_gate.glb"
                 response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
 
+                <a-asset-item id="electric"
+                src="img/electric_fence_jurassic_park.glb"
+                response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+
+
+                <a-asset-item id="Tower"
+                src="img/raptor_pen_tower_v1.glb"
+                response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+
+
         </a-assets>
         
-        <a-camera camera="" position="0.32 2.05166 17.80679" rotation="" look-controls="" wasd-controls="" data-aframe-inspector-original-camera="" scale="1.02 1 1">
-            <a-cursor material="" raycaster="" cursor="" geometry=""></a-cursor>
-        </a-camera>
+        <a-camera camera="" position="-30.38025 27.92686 116.55266" rotation="-5.27121171520357 -1.604281826366457 0" look-controls="" wasd-controls="" data-aframe-inspector-original-camera="" scale="1.02 1 1">
+          <a-cursor material="" raycaster="" cursor="" geometry=""></a-cursor>
+      </a-camera>
         
 
         <!--Model-->
         <!--position= ช่องแรกคือการขยับตามระะนาบ ช่องสองคือขยับขึ้นลง-->
           <!---                 -->
-        <a-entity position="1 4 -4">
-            <a-gltf-model src="#model"  rotation="25.810000000000002 0.12 -1.05"   position="0.06 0.79 0.729" scale="1.44 1.13 1.03" scale="1.13 1.13 1.03"></a-gltf-model>
-          </a-entity>
+          <a-gltf-model src="#model" rotation="6.04 0.12 -1.05" position="-11.11802 22.88727 -38.87527" scale="4.86 4.05 1.88" gltf-model="img/3d icon youtube.glb"></a-gltf-model>
 
           <a-entity position="1 4 -4">
             <a-gltf-model src="#dino"   rotation="7.82 -56.82 -0.43" position="-9.55968 0.99944 -8.06358" scale="8.04 12.55 10.55"></a-gltf-model>
@@ -100,15 +109,29 @@
             <a-gltf-model src="#treelow"   rotation="2.64 -300.62 -1.42" position="-25.07374 -3.0346 -23.31861" scale="-0.27 0.17 -0.26" ></a-gltf-model>
           </a-entity>
 
+            <!--Electic ALL-->
           <a-gltf-model src="#park_gate" rotation="3.51 -540.39 -0.85" position="-13.996 9.90877 56.962" scale="-2.22 2.01 -3.2" gltf-model="img/jurassic_park_gate.glb"></a-gltf-model>
+          <a-gltf-model src="#electric" rotation="-4.8 -543.15 0.01" position="-48.818 1.874 56.927" scale="-2.66 2.01 -3.2" gltf-model="img/electric_fence_jurassic_park.glb"></a-gltf-model>
+          <a-gltf-model src="#electric" rotation="-7.169999999999999 -632.63 0.01" position="-74.47639 1.874 21.1714" scale="-3.51 2.01 -3.2"   gltf-model="img/electric_fence_jurassic_park.glb"></a-gltf-model>
+          <a-gltf-model src="#electric" rotation="-5.09 -540.76 0.2" position="45.25071 1.91524 -23.2942" scale="-3.06 1.92 -3.2" gltf-model="img/electric_fence_jurassic_park.glb"></a-gltf-model>
+          <a-gltf-model src="#electric" rotation="-7.169999999999999 -629.88 0.01" position="74.25364 1.874 15.9495" scale="-4.11 2.01 -3.2" gltf-model="img/electric_fence_jurassic_park.glb"></a-gltf-model>
+          <a-gltf-model src="#electric" rotation="-6.43 -540 0.01" position="34.77888 1.874 57.12344" scale="-4.13 2.01 -3.2" gltf-model="img/electric_fence_jurassic_park.glb"></a-gltf-model>
+          <!--End Electic-->
 
-          
-          <!--End Model-->
+          <!--Tower-->
+
+          <a-gltf-model src="#Tower" rotation="-0.66 -454.4 -1.42" position="-56.78172 10.80029 75.77848" scale="-5.99 3.27 -5.25" gltf-model="img/raptor_pen_tower_v1.glb"></a-gltf-model>
+
+        <!--End Model-->
         <!--พื้น-->
         <a-plane position="0 1 -4" rotation="-90 0 0" width="50" height="40"  color="green" src="#plane"></a-plane> 
-        <a-plane position="-49.97548 1 -4" rotation="-90 0 0" width="50" height="40" color="green" src="#plane" material="" geometry=""></a-plane> 
+        <a-plane position="-49.97548 1 -4" rotation="-90 0 0" width="50" height="40" color="green" src="#plane" material="" geometry=""></a-plane>
+        <a-plane position="49.93136 1 -4" rotation="-90 0 0" width="50" height="40" color="green" src="#plane" material="" geometry=""></a-plane> 
+        <a-plane position="49.931 1 35.85144" rotation="-90 0 0" width="50" height="40" color="green" src="#plane" material="" geometry=""></a-plane> 
         <a-plane position="-49.93667 1 35.76318" rotation="-90 0 0" width="50" height="40"  color="green" src="#plane" material="" geometry=""></a-plane> 
-        <a-plane position="0.004 1 35.9546" rotation="-90 0 0" width="50" height="40"  color="green" src="#plane" material="" geometry=""></a-plane> 
+        <a-plane position="0.004 1 35.9546" rotation="-90 0 0" width="50" height="40"  color="green" src="#plane" material="" geometry=""></a-plane>
+        <a-plane position="-10.30631 1 76.85676" rotation="-89.92 -2.15 0" width="50" height="40" src="#footer" material="" geometry="" scale="1.61 1 1"></a-plane>
+
         
     </a-scene>
   
