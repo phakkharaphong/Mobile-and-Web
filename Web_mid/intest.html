@@ -49,6 +49,7 @@
             <img id="detail-stegosurus" src="img/stegosurus.png">
             <img id="detail-teranodon" src="img/tera.png">
             <img id="detail-tri" src="img/detailtype.png">
+            <img id="detail-raptor" src="img/raptordetial.png">
             <img id="sky" src="img/back.jpg">
                 <a-asset-item id="model" src="img/3d icon youtube.glb"></a-asset-item>
                 <a-asset-item id="dino" src="img/dinosaur_fbx.glb"></a-asset-item>
@@ -108,9 +109,15 @@
                 src="img/overpowered_stegosaurus.glb"
                 response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
 
+                <a-asset-item id="rapp"
+                src="img/blue_velociraptor.glb"
+                response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+
                 <a-asset-item id="checkpiont"
                 src="img/checkpoint.glb"
                 response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+
+
                 
                 <a-assets>
                   <img id="play" src="img/play.png">
@@ -241,6 +248,19 @@
               >
           </a-plane>
 
+          <a-plane 
+              width="2" 
+              height="1.5" 
+              material="" 
+              geometry="" 
+              position="0.30053 4.25933 20.65479" 
+              scale="2.31 1.95 0.09" 
+              src="#detail-Trex" 
+              id="detail_Trex" 
+              rotation="0.82 -52.84 0" 
+              onclick="movecame(id)">
+          </a-plane>
+
 
           <a-entity position="1 4 -4">
             <a-gltf-model 
@@ -334,9 +354,18 @@
           <a-entity position="1 4 -4">
             <a-gltf-model 
               src="#dino3" 
+              rotation="4.95 -408.43000000000006 -0.43" 
+              position="-0.55196 -2.77223 27.04266" 
+              scale="1.2 1.18 1.89"
+          ></a-gltf-model>
+          </a-entity>
+
+          <a-entity position="1 4 -4">
+            <a-gltf-model 
+              src="#rapp" 
               rotation="4.95 -367.97 -0.43" 
-              position="0.709 -2.893 -0.352" 
-              scale="1.2 0.79 1.89"
+              position="-3.26028 -1.54927 22.94804" 
+              scale="1.75 1.46 1.89"
           ></a-gltf-model>
           </a-entity>
 
