@@ -10,6 +10,7 @@
     <script src="hide-on-enter-ar.js"></script>
     <script src="ar-shadows.js"></script>
     <script src="ar-hit-test.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
 
     <style>
       /* สไตล์สำหรับซ่อน popup ตั้งแต่เริ่มต้น */
@@ -46,6 +47,8 @@
             <img id="detail-cano" src="img/carno.png">
             <img id="detail-ceto" src="img/ceratosur.png">
             <img id="detail-stegosurus" src="img/stegosurus.png">
+            <img id="detail-teranodon" src="img/tera.png">
+            <img id="detail-tri" src="img/detailtype.png">
             <img id="sky" src="img/back.jpg">
                 <a-asset-item id="model" src="img/3d icon youtube.glb"></a-asset-item>
                 <a-asset-item id="dino" src="img/dinosaur_fbx.glb"></a-asset-item>
@@ -108,6 +111,13 @@
                 <a-asset-item id="checkpiont"
                 src="img/checkpoint.glb"
                 response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+                
+                <a-assets>
+                  <img id="play" src="img/play.png">
+                  <img id="pause" src="img/pause.jpg">
+                  <video id="solarr" src="img/jura.mp4" loop="true"></video>
+                </a-assets>
+
 
         </a-assets>
         
@@ -144,14 +154,13 @@
           </a-gltf-model>
           <a-gltf-model 
               src="#checkpiont" 
-              rotation="4.135 113.609 -0.719" 
-              position="-16.72838 3.50106 2.8359" 
+              rotation="2.627 203.451 -0.45699999999999996" 
+              position="19.26138 3.46901 39.21535" 
               scale="32.09 39.15 34.24" 
-              gltf-model="img/checkpoint.glb"
-              id="chekTrex"
-              animation__2="property: rotation;; to: 0 360 0; dur: 5000; loop: true;"
-              onclick="movecame(id)"
-              >    
+              gltf-model="img/checkpoint.glb" 
+              id="chekTrex" 
+              animation__2="property: rotation; to: 0 360 0; dur: 5000; loop: true;"
+              onclick="movecame(id)">    
           </a-gltf-model>
 
           <a-gltf-model 
@@ -179,6 +188,17 @@
           </a-gltf-model>
 
           <a-gltf-model 
+              src="#checkpiont" 
+              rotation="1.061 296.766 -0.184" 
+              position="11.26678 48.06367 43.02719" 
+              scale="32.09 39.15 34.24" 
+              gltf-model="img/checkpoint.glb" 
+              id="chekTi" 
+              animation__2="property: rotation; to: 0 360 0; dur: 5000; loop: true;" 
+              onclick="movecame(id)">    
+          </a-gltf-model>
+
+          <a-gltf-model 
             src="#checkpiont" 
             rotation="0.809 311.75 -0.141"  
             position="-52.59066 3.501 24.59123" 
@@ -190,8 +210,21 @@
             >    
           </a-gltf-model>
 
+          
+          <a-plane 
+              width="2" 
+              height="1.5" 
+              material="" 
+              geometry="" 
+              position="18.49274 48.17384 29.77968" 
+              scale="5.93 3.91 0.09" 
+              src="#detail-teranodon" 
+              id="tera" 
+              rotation="4.07 -42.91 0">
+          </a-plane>
+          
 
-          <!--End Checkpoint-->
+          <!--End detail-teranodon Checkpoint-->
 
 
 
@@ -200,9 +233,10 @@
               height="1.5" 
               material="" 
               geometry="" 
-              position="-18.078 2.59141 -4.826" 
+              position="38.80273 2.591 31.93827" 
               scale="2.31 1.95 0.09" src="#detail-Trex"
               id="detail_Trex"
+              rotation="0 -57.71 0"
               onclick="movecame(id)"
               >
           </a-plane>
@@ -221,8 +255,8 @@
               font="kelsonsans"
               value="TREX" 
               width="6" 
-              position="-16.70076 -0.73516 -0.7172"
-              rotation="0 14.999999999999998 0"
+              position="39.41864 -0.73516 38.3431"
+              rotation="0 -73.85 0"
               scale="5.03 3.77 1.67"
             ></a-text>
           </a-entity>
@@ -283,6 +317,19 @@
               >
           </a-plane>
 
+          <a-plane 
+              width="2" 
+              height="1.5" 
+              material="" 
+              geometry="" 
+              position="27.87907 4.04242 3.1707" 
+              scale="5.93 3.91 0.09" 
+              src="#detail-tri" 
+              id="tri"
+              rotation="4.07 -19.84 0">
+          </a-plane>
+          
+
 
           <a-entity position="1 4 -4">
             <a-gltf-model 
@@ -318,6 +365,30 @@
               text="color: #c13333"              
             ></a-text>
 
+
+            <!--Text-->
+
+            <a-text 
+              font="kelsonsans" 
+              value="Ceratosaurus" 
+              width="6" 
+              position="-65.03683 -0.73516 18.83497" 
+              rotation="-0.74 20.59 0" 
+              scale="5.03 3.77 1.67" 
+              text="">
+            </a-text>
+
+            <a-text 
+                font="kelsonsans" 
+                value="Pteranodon" 
+                width="6" 
+                position="14.90266 48.91998 31.84195" 
+                rotation="-0.74 -39.69 0" 
+                scale="5.03 3.77 1.67" 
+                text="">
+            </a-text>
+
+            <!--End Text-->
             <a-plane 
               width="2" 
               height="1.5" 
@@ -332,6 +403,35 @@
           </a-plane>
           </a-entity>
 
+          <!--Animation-->
+
+
+          <a-entity 
+            gltf-model="img/mama_scarface/scene.gltf" 
+            animation-mixer="clip:idle investigate loop" 
+            position="46.87918 2.07707 40.639" 
+            rotation="0 -64.842 0"
+            scale="3.54 2.71 1.54"
+            >
+          </a-entity>
+
+          <a-entity 
+            gltf-model="img/overpowered_velociraptor/scene.gltf" 
+            animation-mixer="clip:Scratch Itself" 
+            position="-15.06217 0.582 28.27561" 
+            rotation="0 -64.842 0"
+            scale="4.2 3.53 3.6"
+          ></a-entity>
+
+          <a-entity 
+            gltf-model="img/animated_flying_pteradactal_dinosaur_loop/scene.gltf" 
+            animation-mixer="clip: Animation" 
+            position="24.011 42.84161 40.639" 
+            rotation="0 -64.842 0" 
+            scale="4.2 3.53 3.6">
+          </a-entity>
+
+          <!--End Animation-->
 
 
 
@@ -419,7 +519,15 @@
         <a-plane position="0.004 1 35.9546" rotation="-90 0 0" width="50" height="40"  color="green" src="#plane" material="" geometry=""></a-plane>
         <a-plane position="58.74976 -1.24635 101.841" rotation="-90 0 0" width="50" height="40" color="green" src="#plane" material="" geometry="" scale="1.11 1.76 1.34"></a-plane>
         <a-plane position="-10.30631 1 76.85676" rotation="-89.92 -2.15 0" width="50" height="40" src="#footer" material="" geometry="" scale="1.61 1 1"></a-plane>
-        
+        <a-plane position="-11.69056 1 116.81905" rotation="-89.92 -2.15 0" width="50" height="40" src="#footer" material="" geometry="" scale="1.67 1 1"></a-plane>
+
+      <!-- video -->
+        <a-video src="#solarr" width="8" height="4.5" position="-14.57851 20.50758 148.45728" material="" geometry="" rotation="0 -179.93 0" scale="5.38 5.83 1">
+          <a-image id="videoControls" src="#play" position="0 -3 0" scale="0.5 0.5 1" play-pause="" material="" geometry="">
+          </a-image>
+      </a-video>
+
+
       </a-scene>
       <!--FuntionScrip-->
       <script>
@@ -433,6 +541,21 @@
             document.getElementById('mainCamera').setAttribute('position', modelPosition.x + ' ' + modelPosition.y + ' ' + modelPosition.z);
           });
         }
+        AFRAME.registerComponent('play-pause', {
+          init: function () {
+              var myVideo = document.querySelector('#solarr');
+              var videoControls = document.querySelector('#videoControls');
+              this.el.addEventListener('click', function () {
+                  if (myVideo.paused) {
+                      myVideo.play();
+                      videoControls.setAttribute('src', '#pause');
+                  } else {
+                      myVideo.pause();
+                      videoControls.setAttribute('src', '#play');
+                  }
+              });
+          }
+      });
        
       </script>
       

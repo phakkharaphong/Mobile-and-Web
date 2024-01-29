@@ -1,0 +1,11 @@
+Model Information:
+* title:	Mama Scarface
+* source:	https://sketchfab.com/3d-models/mama-scarface-ac51ce40425545dcac70c3e34b9a0105
+* author:	Aiden Vang (https://sketchfab.com/vang807)
+
+Model License:
+* license type:	CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)
+* requirements:	Author must be credited. Modified versions must have the same license. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Mama Scarface" (https://sketchfab.com/3d-models/mama-scarface-ac51ce40425545dcac70c3e34b9a0105) by Aiden Vang (https://sketchfab.com/vang807) licensed under CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)

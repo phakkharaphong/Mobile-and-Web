@@ -1,0 +1,11 @@
+Model Information:
+* title:	Overpowered Velociraptor
+* source:	https://sketchfab.com/3d-models/overpowered-velociraptor-cbe3430a66294a25b53cd26cee0f6b09
+* author:	Aiden Vang (https://sketchfab.com/vang807)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Overpowered Velociraptor" (https://sketchfab.com/3d-models/overpowered-velociraptor-cbe3430a66294a25b53cd26cee0f6b09) by Aiden Vang (https://sketchfab.com/vang807) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
