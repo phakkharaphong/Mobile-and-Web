@@ -43,6 +43,10 @@
             <img id="plane" src="img/backg.jpg">
             <img id="footer" src="img/foot.png">
             <img id="detail-Trex" src="img/testimg.png">
+            <img id="detail-cano" src="img/carno.png">
+            <img id="detail-ceto" src="img/ceratosur.png">
+            <img id="detail-stegosurus" src="img/stegosurus.png">
+            <img id="sky" src="img/back.jpg">
                 <a-asset-item id="model" src="img/3d icon youtube.glb"></a-asset-item>
                 <a-asset-item id="dino" src="img/dinosaur_fbx.glb"></a-asset-item>
                  <!-- <a-asset-item id="dino2" src="img/tricera (1).glb"></a-asset-item>-->
@@ -101,6 +105,10 @@
                 src="img/overpowered_stegosaurus.glb"
                 response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
 
+                <a-asset-item id="checkpiont"
+                src="img/checkpoint.glb"
+                response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+
         </a-assets>
         
         <a-camera id="mainCamera" camera="" position="-30.38025 27.92686 116.55266" rotation="-5.27121171520357 -1.604281826366457 0" look-controls="" wasd-controls="" data-aframe-inspector-original-camera="" scale="1.02 1 1">
@@ -122,6 +130,71 @@
               >    
           </a-gltf-model>
 
+          <!--ChekPoint-->
+          <a-gltf-model 
+              src="#checkpiont" 
+              rotation="5.465 34.384 -0.95" 
+              position="-25.1824 22.76899 -0.71254" 
+              scale="32.09 39.15 34.24" 
+              gltf-model="img/checkpoint.glb"
+              id="chekcarno"
+              animation__2="property: rotation;; to: 0 360 0; dur: 5000; loop: true;"
+              onclick="movecame(id)"
+              >    
+          </a-gltf-model>
+          <a-gltf-model 
+              src="#checkpiont" 
+              rotation="4.135 113.609 -0.719" 
+              position="-16.72838 3.50106 2.8359" 
+              scale="32.09 39.15 34.24" 
+              gltf-model="img/checkpoint.glb"
+              id="chekTrex"
+              animation__2="property: rotation;; to: 0 360 0; dur: 5000; loop: true;"
+              onclick="movecame(id)"
+              >    
+          </a-gltf-model>
+
+          <a-gltf-model 
+              src="#checkpiont" 
+              rotation="2.55 208.037 -0.443"  
+              position="17.06503 3.501 76.51048" 
+              scale="32.09 39.15 34.24" 
+              gltf-model="img/checkpoint.glb"
+              id="chekstego"
+              animation__2="property: rotation;; to: 0 360 0; dur: 5000; loop: true;"
+              onclick="movecame(id)"
+              >    
+          </a-gltf-model>
+
+          <a-gltf-model 
+              src="#checkpiont" 
+              rotation="1.733 256.704 -0.301"  
+              position="19.64307 3.501 14.89171" 
+              scale="32.09 39.15 34.24" 
+              gltf-model="img/checkpoint.glb"
+              id="chekTisera"
+              animation__2="property: rotation;; to: 0 360 0; dur: 5000; loop: true;"
+              onclick="movecame(id)"
+              >    
+          </a-gltf-model>
+
+          <a-gltf-model 
+            src="#checkpiont" 
+            rotation="0.809 311.75 -0.141"  
+            position="-52.59066 3.501 24.59123" 
+            scale="32.09 39.15 34.24" 
+            gltf-model="img/checkpoint.glb"
+            id="chekcesur"
+            animation__2="property: rotation;; to: 0 360 0; dur: 5000; loop: true;"
+            onclick="movecame(id)"
+            >    
+          </a-gltf-model>
+
+
+          <!--End Checkpoint-->
+
+
+
           <a-plane 
               width="2" 
               height="1.5" 
@@ -142,7 +215,6 @@
               position="-9.56 1.97581 -8.064"
               scale="13.04 16.69 13.34"
               id="Trex"
-              onclick="movecame(id)"
               >
             </a-gltf-model>
             <a-text 
@@ -175,16 +247,42 @@
               id="carnots"
               onclick="movecame(id)"
           ></a-gltf-model>
+          <a-plane 
+              width="2" 
+              height="1.5" 
+              material="" 
+              geometry="" 
+              position="-34.82729 19.72309 -20.72098"
+              scale="6.8 4.8 0.09"    
+              src="#detail-cano"
+              id="carnotauruss"
+              rotation="4.07 27.98 0"
+              >
+          </a-plane>
+
 
           <a-gltf-model  
               src="#tosur" 
-              rotation="6.74 -43.2 0.27" 
-              position="-62.61773 0.95232 9.12496" 
+              rotation="6.74 -39.78 0.27" 
+              position="-60.12939 0.95232 9.12496" 
               scale="0.07 0.05 0.06" 
               gltf-model="img/jurassic_park_3_ceratosarusus.glb"
               id="tosur"
               onclick="movecame(id)"
           ></a-gltf-model>
+          <a-plane 
+              width="2" 
+              height="1.5" 
+              material="" 
+              geometry="" 
+              position="-66.44363 3.82743 24.53844"
+              scale="6.59 4.8 0.09"     
+              src="#detail-ceto"
+              id="ceto"
+              rotation="4.07 80 0"
+              >
+          </a-plane>
+
 
           <a-entity position="1 4 -4">
             <a-gltf-model 
@@ -203,6 +301,38 @@
               scale="6.07 4.11 6.41" 
           ></a-gltf-model>
           </a-entity>
+          <a-entity position="1 4 -4">
+            <a-gltf-model 
+              src="#stego" 
+              rotation="5.86 -520.52 -0.43" 
+              position="65.0418 -4.957 90.208" 
+              scale="6.07 4.11 6.41" 
+          ></a-gltf-model>
+            <a-text 
+              font="kelsonsans"
+              value="Stegosaurus" 
+              width="6" 
+              position="25.35208 -0.73516 73.99439"
+              rotation="-0.53 -83.16 0"
+              scale="5.03 3.77 1.67"
+              text="color: #c13333"              
+            ></a-text>
+
+            <a-plane 
+              width="2" 
+              height="1.5" 
+              material="" 
+              geometry="" 
+              position="21.522 1.39445 72.207"
+              scale="3.4 2.48 0.09"   
+              src="#detail-stegosurus"
+              id="detastegosurus"
+              rotation="0 -44.48 0"
+              >
+          </a-plane>
+          </a-entity>
+
+
 
 
 
@@ -262,6 +392,10 @@
           <!--End Electic-->
 
 
+
+          <!--Sky-->
+          <a-sky src="#sky"></a-sky>
+          <!--End-->
           <a-gltf-model 
               src="#cage" 
               rotation="-0.22 -540 0.01"  
