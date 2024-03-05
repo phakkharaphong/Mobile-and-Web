@@ -86,7 +86,8 @@
         <v-btn @click="google_login()"  v-if="!user"> Login</v-btn>
         <v-btn @click="google_logout()" v-if="user"> Logout</v-btn>
         </v-card-actions>
-    
+        <div>{{ustudent}}</div>
+
     </div>
     
  
@@ -106,14 +107,17 @@
 
       const app = Vue.createApp({
         data() {
-                    return {
-                            title: "Work 6:  เรียกใช้ฐานข้อมูล Firebase ด้วย VueJS",
-                            footer: "ระบุ รหัส ชื่อ-สกุล สาขา",
-                            students: [],
-                            editstd : {},
-                            editmode : 0,
-                    };
+          return {
+            title: "Work 6:  เรียกใช้ฐานข้อมูล Firebase ด้วย VueJS",
+            footer: "ระบุ รหัส ชื่อ-สกุล สาขา",
+            students: [],
+            editstd: {},
+            editmode: 0,
+            user: null,
+            ustudent: null,
+          };
         },
+
 
         mounted() {
             firebase.auth().onAuthStateChanged((user)=>{
@@ -176,6 +180,20 @@
               firebase.auth().signOut();
             }
           },
+          getstudent(email){
+            db.collection("students")
+              .where("email","==",email)
+              .limit(1)
+              .get()
+              .then(
+                (querySnapshot) => {
+                 querySnapshot.forEach((doc) => {
+                  this.ustudent = { id: doc.id, ...doc.data() };
+                });
+               }
+            );
+          },
+
 
 
 
@@ -186,4 +204,5 @@
       app.use(vuetify).mount("#app");
     </script>
   </body>
+  
 </html>
