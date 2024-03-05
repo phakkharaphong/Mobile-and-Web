@@ -164,13 +164,13 @@ class App extends React.Component {
 
   // ใช้ config จาก เว็บ Firebase: Project Setting 
   const firebaseConfig = {
-    apiKey: "AIzaSyBkKCHUMTAKbdLacIr1KazkSKV0D3Mtv-M",
-    authDomain: "web2566-29ed6.firebaseapp.com",
-    projectId: "web2566-29ed6",
-    storageBucket: "web2566-29ed6.appspot.com",
-    messagingSenderId: "986708417952",
-    appId: "1:986708417952:web:a4b30931b35dee89e458c5",
-    measurementId: "G-S73JGPNMBS"
+    apiKey: "AIzaSyBfjPLSrQHLScbQqWab3yR2G4J6f56oRd4",
+    authDomain: "web2566-bab78.firebaseapp.com",
+    projectId: "web2566-bab78",
+    storageBucket: "web2566-bab78.appspot.com",
+    messagingSenderId: "789702014075",
+    appId: "1:789702014075:web:d6f118e7440bdbb6d7dede",
+    measurementId: "G-4CFHD6DEW5"
   };
 firebase.initializeApp(firebaseConfig);      
 const db = firebase.firestore();
