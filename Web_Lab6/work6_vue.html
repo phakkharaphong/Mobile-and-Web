@@ -146,6 +146,19 @@
               db.collection("students").doc(std.id).delete();
             }
           },
+          google_login() {
+            // Using a popup.
+            var provider = new firebase.auth.GoogleAuthProvider();
+            provider.addScope("profile");
+            provider.addScope("email");
+            firebase.auth().signInWithPopup(provider);
+          },
+          google_logout(){
+            if(confirm("Are you sure?")){
+              firebase.auth().signOut();
+            }
+          }
+        ,   
 
 
 
@@ -170,19 +183,6 @@
               this.students = stdlist;
             });
           },
-          google_login() {
-            // Using a popup.
-            var provider = new firebase.auth.GoogleAuthProvider();
-            provider.addScope("profile");
-            provider.addScope("email");
-            firebase.auth().signInWithPopup(provider);
-          },
-        google_logout(){
-            if(confirm("Are you sure?")){
-              firebase.auth().signOut();
-            }
-          },
-
         },
       });
       
