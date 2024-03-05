@@ -43,10 +43,7 @@
                           </tr>
                         </tbody>
                       </table>
-        
                 </v-card-text>
-    
-    
                 <v-card-actions>
                     <v-btn @click="readData()">Read Data (get)</v-btn>
                     <v-btn @click="autoRead()">Auto Read (onSnapshot)</v-btn>
@@ -56,8 +53,6 @@
                     <v-btn @click="google_login()" v-if="!user"> Login</v-btn>
                     <v-btn @click="google_logout()" v-if="user"> Logout</v-btn>          
                 </v-card-actions>
-                    
-                
             </v-card>
             <v-card v-if="editmode">
                 <v-card-text class="pa-6">
@@ -73,7 +68,8 @@
                     <v-btn @click="savedata()">Save</v-btn>
                     <v-btn @click="editmode=0">Cancel</v-btn>
                </v-card-actions>
-             </v-card>            
+             </v-card>
+                      
           <div class="pa-6 text-center">{{footer}}</div>
         </v-container>        
       </v-app>
@@ -110,15 +106,15 @@
 
       const app = Vue.createApp({
         data() {
-            return {
-                    title: "Work 6:  เรียกใช้ฐานข้อมูล Firebase ด้วย VueJS",
-                    footer: "ระบุ รหัส ชื่อ-สกุล สาขา",
-                    students: [],
-                    editstd: {},
-                    editmode: 0,
-                    user: null,  // เพิ่มตัวแปร user=null คือยังไม่ login
-            };
+                    return {
+                            title: "Work 6:  เรียกใช้ฐานข้อมูล Firebase ด้วย VueJS",
+                            footer: "ระบุ รหัส ชื่อ-สกุล สาขา",
+                            students: [],
+                            editstd : {},
+                            editmode : 0,
+                    };
         },
+
         mounted() {
             firebase.auth().onAuthStateChanged((user)=>{
                 if (user) {
@@ -130,23 +126,45 @@
         },
         
 
-        edit(std){
-             this.editstd = std;
-             this.editmode = "edit";
-       },
-       addData(){
-            this.editmode = "เพิ่มนักเรียน";
-            this.editstd = {};
-          },
-       savedata(){
-            db.collection("students").doc(this.editstd.id).set(this.editstd);
-        },
-        deleteData(std) {
-            if (confirm("ต้องการลบข้อมูล")) {
-              db.collection("students").doc(std.id).delete();
-            }
-          },
-          google_login() {
+
+        methods: {
+            readData() {
+                db.collection("students")
+                .get()
+                .then((querySnapshot) => {
+                    var stdlist = [];
+                    querySnapshot.forEach((doc) => {
+                    stdlist.push({ id: doc.id, ...doc.data() });
+                    });
+                    this.students = stdlist;
+                });
+            },
+            autoRead() {
+                db.collection("students").onSnapshot((querySnapshot) => {
+                var stdlist = [];
+                querySnapshot.forEach((doc) => {
+                    stdlist.push({ id: doc.id, ...doc.data() });
+                });
+                this.students = stdlist;
+                });
+            },
+            addData(){
+                this.editmode = "เพิ่มนักเรียน";
+                this.editstd = {};
+            },
+            edit(std){
+                this.editstd = std;
+                this.editmode = "edit";
+            },
+            savedata(){
+                    db.collection("students").doc(this.editstd.id).set(this.editstd);
+            },
+            deleteData(std) {
+                if (confirm("ต้องการลบข้อมูล")) {
+                db.collection("students").doc(std.id).delete();
+                }
+            },
+            google_login() {
             // Using a popup.
             var provider = new firebase.auth.GoogleAuthProvider();
             provider.addScope("profile");
@@ -161,27 +179,6 @@
 
 
 
-        methods: {
-          readData() {
-            db.collection("students")
-              .get()
-              .then((querySnapshot) => {
-                var stdlist = [];
-                querySnapshot.forEach((doc) => {
-                  stdlist.push({ id: doc.id, ...doc.data() });
-                });
-                this.students = stdlist;
-              });
-          },
-          autoRead() {
-            db.collection("students").onSnapshot((querySnapshot) => {
-              var stdlist = [];
-              querySnapshot.forEach((doc) => {
-                stdlist.push({ id: doc.id, ...doc.data() });
-              });
-              this.students = stdlist;
-            });
-          },
         },
       });
       
