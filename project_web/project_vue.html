@@ -68,11 +68,14 @@
 
 
                 <v-card-actions>
+                    <v-btn @click="google_login()" v-if="!user"> Login</v-btn>
+                    <div v-if="user">
+                      <v-btn @click="google_logout()" v-if="user"> Logout</v-btn>   
                       <div v-for="(s) in students">
                         <v-btn v-if="user.email == s.email"><a href="test.html">Next for students</a></v-btn>
-                      </div>
-                    <v-btn @click="google_login()" v-if="!user"> Login</v-btn>
-                    <v-btn @click="google_logout()" v-if="user"> Logout</v-btn>          
+                      </div>   
+                    </div>
+                         
                 </v-card-actions>
             </v-card>
             <v-card v-if="editmode">
@@ -159,7 +162,6 @@
             teachers: [],
             user: null,
             ustudent: null,
-            email:null
           };
         },
 
