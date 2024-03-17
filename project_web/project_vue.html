@@ -58,15 +58,15 @@
                           </tr>
                         </tbody>
                       </table>
-                </v-card-text>-->
+                </v-card-text>
                 <v-card-actions>
                     <v-btn @click="readData()">Read Data (get)</v-btn>
                     <v-btn @click="autoRead()">Auto Read (onSnapshot)</v-btn>
                     <v-btn @click="addData()">Add Data</v-btn>
-                </v-card-actions>
+                </v-card-actions>-->
                 <v-card-actions>
                     <div v-for="(s) in students">
-                      <v-btn v-if="user.email == s.email"><a href="/project_web/test.html"></a>Next for students</v-btn>
+                      <v-btn v-if="user.email == s.email"><a href="/project_web/test.html">Next for students</a></v-btn>
                     </div>
                     <v-btn @click="google_login()" v-if="!user"> Login</v-btn>
                     <v-btn @click="google_logout()" v-if="user"> Logout</v-btn>          
