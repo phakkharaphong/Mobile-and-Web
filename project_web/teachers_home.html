@@ -107,9 +107,8 @@
                             <td>{{c.room}}</td>
                             <td>{{c.subject}}</td>
                             <td>
-                                <v-btn @click="edit(q)"><v-icon icon="mdi-account-edit"></v-icon></v-btn>
                             </td>
-                            <td><v-btn @click="deleteData(q)"><v-icon icon="mdi-account-remove"></v-icon></v-btn></td>
+                            <td><v-btn @click="deletesed(c)"><v-icon icon="mdi-account-remove"></v-icon></v-btn></td>
                           </tr>
                         </tbody>
                       </table>
@@ -309,6 +308,11 @@
                   db.collection("students").doc(std.id).delete();
                   }
               },
+              deletesed(std) {
+                if (confirm("ต้องการลบข้อมูล")) {
+                db.collection("checkin").doc(std.id).delete();
+                }
+            },
               deleteqiz(qiz) {
                 if (confirm("ต้องการลบข้อมูล")) {
                 db.collection("quiz").doc(qiz.id).delete();

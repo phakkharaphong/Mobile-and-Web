@@ -40,13 +40,13 @@
                         <v-card-text class="pa-6">
                             <v-card-title class="bg-blue-grey">{{editmode}}</v-card-title>
                             <v-text-field v-model="editcheckin.id" label="รหัส" ></v-text-field>
-                            <v-text-field v-model="editcheckin.class_date" label="เวลา"></v-text-field>
+                            <v-text-field type="datetime-local" v-model="editcheckin.class_date" label="เวลา"></v-text-field>
                             <v-text-field v-model="editcheckin.room" label="ห้อง"></v-text-field>
                             <div  v-for="(q) in quiz" class="pa-2"> 
                                  <h2>
                                     <h2>{{q.quiz_name}}</h2>
-                                </h2>จงเติมคำตอบลงช่องว่าง: <v-text-field v-model="editcheckin.qiz_send" label="คำตอบ"></v-text-field>
-                            </div>
+                                </h2>
+                            </div>จงเติมคำตอบลงช่องว่าง: <v-text-field v-model="editcheckin.qiz_send" label="คำตอบ"></v-text-field>
 
                        </v-card-text>
                        <v-card-actions>
@@ -98,7 +98,7 @@
           data() {
             return {
               title: "Project:  เช็คชื่อจากฐานข้อมูล",
-              footer: "ระบุ รหัส ชื่อ-สกุล สาขา",
+              footer: "ระบุ 643020632-1 ภัครพงศ์ เจริญผล 	643021319-0	นางสาวทอเนีย ทะเฮรี 	643021330-2	นางสาวพัชราภรณ์ เสมียนชัย",
               students: [],
               editstd: {},
               editquiz: {},
