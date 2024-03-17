@@ -29,9 +29,9 @@
                       </div>
                   </template>
                 </v-card-actions>
-              
-                <v-card-text class="pa-6" v-for="(t) in teachers">
-                    <table width="100%" v-if="user.email == t.email" >
+              <!--
+                <v-card-text class="pa-6">
+                    <table width="100%" >
                         <thead>
                           <tr>
                             <td>รหัส</td>
@@ -58,13 +58,17 @@
                           </tr>
                         </tbody>
                       </table>
-                </v-card-text>
+                </v-card-text>-->
                 <v-card-actions>
                     <v-btn @click="readData()">Read Data (get)</v-btn>
                     <v-btn @click="autoRead()">Auto Read (onSnapshot)</v-btn>
                     <v-btn @click="addData()">Add Data</v-btn>
                 </v-card-actions>
                 <v-card-actions>
+                    <div v-for="(s) in students">
+                      <v-btn v-if="user.email == s.email">Next for students</v-btn>
+                    </div>
+                    
                     <v-btn @click="google_login()" v-if="!user"> Login</v-btn>
                     <v-btn @click="google_logout()" v-if="user"> Logout</v-btn>          
                 </v-card-actions>
@@ -109,14 +113,12 @@
                 <tr>
                   <td>email</td>
                   <td>name</td>
-                  <td>สำหรับอาจารย์</td>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="(tt) in teachers">
                   <td>{{tt.email}}</td>
                   <td>{{tt.name}}</td>
-                  
                  <!-- ทดสอบ if <td v-if = "t.email == ''"> <v-btn @click="readDatatc">Read Data (get)</v-btn></td>-->
                 </tr>
               </tbody>
