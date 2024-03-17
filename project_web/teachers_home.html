@@ -68,38 +68,10 @@
                         <v-btn @click="addData()">Add Data</v-btn>
                         <v-btn @click="addDataqiz()">เพิ่มคำถาม</v-btn>
                         <v-btn @click="cheksend()">เช็คคำตอบ</v-btn>
+                        <v-btn @click="showsubject()">ดูคำถามทั้งหมด</v-btn>
                     </v-card-actions>
                     
-                    <v-card-text class="pa-6" v-if="editmode==='เพิ่มนักเรียน'">
-                        <table width="100%" >
-                            <thead>
-                              <tr>
-                                <td>รหัส</td>
-                                <td>คำนำหน้า</td>
-                                <td>ชื่อ</td>
-                                <td>สกุล</td>
-                                <td>Email</td>
-                                <td>section</td>
-                                <td>edit</td>
-                                <td>deleteData</td>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr v-for="(s) in students">
-                                <td>{{s.id}}</td>
-                                <td>{{s.title}}</td>
-                                <td>{{s.fname}}</td>
-                                <td>{{s.lname}}</td>
-                                <td>{{s.email}}</td>
-                                <td>{{s.section}}</td>
-                                <td>
-                                    <v-btn @click="edit(s)"><v-icon icon="mdi-account-edit"></v-icon></v-btn>
-                                </td>
-                                <td><v-btn @click="deleteData(s)"><v-icon icon="mdi-account-remove"></v-icon></v-btn></td>
-                              </tr>
-                            </tbody>
-                          </table>
-                    </v-card-text>
+                   
     
                     <v-card-actions>
                         <v-btn @click="google_login()" v-if="!user"> Login</v-btn>
@@ -142,7 +114,31 @@
                         </tbody>
                       </table>
                 </v-card-text>
-
+                <v-card-text class="pa-6" v-if="editmode==='โชว์คำตอบทั้งหมด'">
+                    <table width="100%" >
+                        <thead>
+                          <tr>
+                            <td>ผู้โพส</td>
+                            <td>หัวข้อ</td>
+                            <td>แก้ไข</td>
+                            <td>ลบ</td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="(q) in quiz">
+                            <td>{{q.quiz_cus}}</td>
+                            <td>{{q.quiz_name}}</td>
+                            <td>
+                                <v-btn @click="editqz(q)"><v-icon icon="mdi-account-edit"></v-icon></v-btn>
+                            </td>
+                            <td><v-btn @click="deleteqiz(q)"><v-icon icon="mdi-account-remove"></v-icon></v-btn></td>
+                          </tr>
+                        </tbody>
+                        <v-card-actions>
+                            <v-btn @click="editmode=0">Cancel</v-btn>
+                       </v-card-actions>
+                      </table>
+                </v-card-text>
                 <!--แก้ไขข้อมูล - เพิ่มข้อมูล -->
                 <v-card v-if="editmode==='เพิ่มนักเรียน'">
                     <v-card-text class="pa-6">
@@ -292,8 +288,15 @@
                   this.editstd = std;
                   this.editmode = "เพิ่มนักเรียน";
               },
+              editqz(quiz){
+                this.editquiz = quiz;
+                this.editmode = "เพิ่มคำถาม";
+            },
               cheksend(){
                 this.editmode = "เช็คคำตอบ";
+            },
+            showsubject(){
+                this.editmode = "โชว์คำตอบทั้งหมด";
             },
               savedata(){
                       db.collection("students").doc(this.editstd.id).set(this.editstd);
@@ -306,6 +309,11 @@
                   db.collection("students").doc(std.id).delete();
                   }
               },
+              deleteqiz(qiz) {
+                if (confirm("ต้องการลบข้อมูล")) {
+                db.collection("quiz").doc(qiz.id).delete();
+                }
+            },
               google_login() {
               // Using a popup.
               var provider = new firebase.auth.GoogleAuthProvider();
