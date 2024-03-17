@@ -255,7 +255,6 @@
             provider.addScope("profile");
             provider.addScope("email");
             firebase.auth().signInWithPopup(provider);
-            location.reload();
           },
           google_logout(){
             if(confirm("Are you sure?")){
