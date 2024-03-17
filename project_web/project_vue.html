@@ -29,7 +29,7 @@
                       </div>
                   </template>
                 </v-card-actions>
-              <!--
+              
                 <v-card-text class="pa-6">
                     <table width="100%" >
                         <thead>
@@ -40,7 +40,8 @@
                             <td>สกุล</td>
                             <td>Email</td>
                             <td>section</td>
-                            <td>section2</td>
+                            <td>edit</td>
+                            <td>deleteData</td>
                           </tr>
                         </thead>
                         <tbody>
@@ -53,20 +54,25 @@
                             <td>{{s.section}}</td>
                             <td>
                                 <v-btn @click="edit(s)"><v-icon icon="mdi-account-edit"></v-icon></v-btn>
-                                <v-btn @click="deleteData(s)"><v-icon icon="mdi-account-remove"></v-icon></v-btn>
                             </td>
+                            <td><v-btn @click="deleteData(s)"><v-icon icon="mdi-account-remove"></v-icon></v-btn></td>
                           </tr>
                         </tbody>
                       </table>
                 </v-card-text>
                 <v-card-actions>
-                    <v-btn @click="readData()">Read Data (get)</v-btn>
-                    <v-btn @click="autoRead()">Auto Read (onSnapshot)</v-btn>
+                   <!-- <v-btn @click="readData()">Read Data (get)</v-btn>
+                    <v-btn @click="autoRead()">Auto Read (onSnapshot)</v-btn>-->
                     <v-btn @click="addData()">Add Data</v-btn>
-                </v-card-actions>-->
+                </v-card-actions>
+
+
                 <v-card-actions>
                     <div v-for="(s) in students">
                       <v-btn v-if="user.email == s.email"><a href="/project_web/test.html">Next for students</a></v-btn>
+                    </div>
+                    <div>
+                      <h1></h1>
                     </div>
                     <v-btn @click="google_login()" v-if="!user"> Login</v-btn>
                     <v-btn @click="google_logout()" v-if="user"> Logout</v-btn>          
@@ -80,9 +86,10 @@
                     <v-text-field v-model="editstd.fname" label="ชื่อ"></v-text-field>
                     <v-text-field v-model="editstd.lname" label="นามสกุล"></v-text-field>
                     <v-text-field v-model="editstd.email" label="E-mail"></v-text-field>
-                    <v-text-field v-model="editstd.phone" label="โทรศัพท์"></v-text-field>
+                    <v-text-field v-model="editstd.section" label="Section"></v-text-field>
                </v-card-text>
                <v-card-actions>
+
                     <v-btn @click="savedata()">Save</v-btn>
                     <v-btn @click="editmode=0">Cancel</v-btn>
                </v-card-actions>
@@ -124,7 +131,7 @@
           </table>
       </v-card-text>
       <v-card-actions>
-        <v-btn @click="readDatatc">Read Data (get)</v-btn>
+        <!-- <v-btn @click="readDatatc">Read Data (get)</v-btn> -->
     </v-card-actions>
 
     </div>
@@ -167,12 +174,30 @@
                 this.user = null;
             }
             });
+            db.collection("teachers") .get()
+            .then((querySnapshot) => {
+                var teacherslist = [];
+                querySnapshot.forEach((doc) => {
+                  teacherslist.push({ email: doc.email, ...doc.data() });
+                });
+                this.teachers = teacherslist;
+            });
+            db.collection("students")
+            .get()
+            .then((querySnapshot) => {
+                var stdlist = [];
+                querySnapshot.forEach((doc) => {
+                stdlist.push({ id: doc.id, ...doc.data() });
+                });
+                this.students = stdlist;
+            });
+            
         },
         
 
 
         methods: {
-            readData() {
+           /* readData() {
                 db.collection("students")
                 .get()
                 .then((querySnapshot) => {
@@ -182,9 +207,9 @@
                     });
                     this.students = stdlist;
                 });
-            },
+            },*/
 
-            //สำหรับอาจารย์
+            /*//สำหรับอาจารย์
             readDatatc() {
               db.collection("teachers")
               .get()
@@ -196,7 +221,7 @@
                   this.teachers = teacherslist;
               });
           },
-          ///
+          ///*/
 
             autoRead() {
                 db.collection("students").onSnapshot((querySnapshot) => {
