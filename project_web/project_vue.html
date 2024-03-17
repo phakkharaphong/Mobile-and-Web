@@ -66,9 +66,8 @@
                 </v-card-actions>
                 <v-card-actions>
                     <div v-for="(s) in students">
-                      <v-btn v-if="user.email == s.email">Next for students</v-btn>
+                      <v-btn v-if="user.email == s.email"><a href="/project_web/test.html"></a>Next for students</v-btn>
                     </div>
-                    
                     <v-btn @click="google_login()" v-if="!user"> Login</v-btn>
                     <v-btn @click="google_logout()" v-if="user"> Logout</v-btn>          
                 </v-card-actions>
