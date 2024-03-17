@@ -68,9 +68,12 @@
 
 
                 <v-card-actions>
-                    <div v-for="(s) in students">
-                      <v-btn v-if="user.email == s.email"><a href="/project_web/test.html">Next for students</a></v-btn>
-                    </div>
+                  <div v-if="!user">
+                      <div v-for="(s) in students">
+                        <v-btn v-if="user.email == s.email"><a href="test.html">Next for students</a></v-btn>
+                      </div>
+                  </div>
+                   
                     <div>
                       <h1></h1>
                     </div>
@@ -242,6 +245,7 @@
             },
             savedata(){
                     db.collection("students").doc(this.editstd.id).set(this.editstd);
+                    location.reload();
             },
             deleteData(std) {
                 if (confirm("ต้องการลบข้อมูล")) {
@@ -254,10 +258,12 @@
             provider.addScope("profile");
             provider.addScope("email");
             firebase.auth().signInWithPopup(provider);
+            location.reload();
           },
           google_logout(){
             if(confirm("Are you sure?")){
               firebase.auth().signOut();
+              location.reload();
             }
           },
           getstudent(email){
