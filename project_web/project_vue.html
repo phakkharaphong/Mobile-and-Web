@@ -18,20 +18,20 @@
         <v-container>
             <v-card>
                 <v-card-title class="bg-blue-grey">{{title}}</v-card-title>
-                <v-card-actions>
-                  <template v-if="user">
-                     <div class="pa-2">
-                        <v-avatar><img :src="user.photoURL" /></v-avatar>
-                     </div>
-                     <div class="pa-2">
-                        {{user.displayName}}<br />
-                        {{user.email}}<br/>
-                     </div>
-                 </template>
-              </v-card-actions>
+                  <v-card-actions >
+                    <template v-if="user">
+                      <div class="pa-2">
+                          <v-avatar><img :src="user.photoURL" /></v-avatar>
+                      </div>
+                      <div class="pa-2">
+                          {{user.displayName}}<br />
+                          {{user.email}}<br/>
+                      </div>
+                  </template>
+                </v-card-actions>
               
-                <v-card-text class="pa-6">
-                    <table width="100%">
+                <v-card-text class="pa-6" v-for="(t) in teachers">
+                    <table width="100%" v-if="user.email == t.email" >
                         <thead>
                           <tr>
                             <td>รหัส</td>
@@ -39,7 +39,8 @@
                             <td>ชื่อ</td>
                             <td>สกุล</td>
                             <td>Email</td>
-                            <td>โทรศัพท์</td>
+                            <td>section</td>
+                            <td>section2</td>
                           </tr>
                         </thead>
                         <tbody>
@@ -49,7 +50,7 @@
                             <td>{{s.fname}}</td>
                             <td>{{s.lname}}</td>
                             <td>{{s.email}}</td>
-                            <td>{{s.phone}}</td>
+                            <td>{{s.section}}</td>
                             <td>
                                 <v-btn @click="edit(s)"><v-icon icon="mdi-account-edit"></v-icon></v-btn>
                                 <v-btn @click="deleteData(s)"><v-icon icon="mdi-account-remove"></v-icon></v-btn>
@@ -97,10 +98,33 @@
                 {{user.email}}<br />
             </div>
         </template>
-        <v-btn @click="google_login()"  v-if="!user"><a href="/project_web/test.html">Login</a></v-btn>
+        <v-btn @click="google_login()"  v-if="!user">Login</v-btn>
         <v-btn @click="google_logout()" v-if="user"> Logout</v-btn>
         </v-card-actions>
         <div>{{ustudent}}</div>
+
+        <v-card-text class="pa-6">
+          <table width="100%">
+              <thead>
+                <tr>
+                  <td>email</td>
+                  <td>name</td>
+                  <td>สำหรับอาจารย์</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(tt) in teachers">
+                  <td>{{tt.email}}</td>
+                  <td>{{tt.name}}</td>
+                  
+                 <!-- ทดสอบ if <td v-if = "t.email == ''"> <v-btn @click="readDatatc">Read Data (get)</v-btn></td>-->
+                </tr>
+              </tbody>
+          </table>
+      </v-card-text>
+      <v-card-actions>
+        <v-btn @click="readDatatc">Read Data (get)</v-btn>
+    </v-card-actions>
 
     </div>
     
@@ -127,6 +151,7 @@
             students: [],
             editstd: {},
             editmode: 0,
+            teachers: [],
             user: null,
             ustudent: null,
           };
@@ -157,6 +182,21 @@
                     this.students = stdlist;
                 });
             },
+
+            //สำหรับอาจารย์
+            readDatatc() {
+              db.collection("teachers")
+              .get()
+              .then((querySnapshot) => {
+                  var teacherslist = [];
+                  querySnapshot.forEach((doc) => {
+                    teacherslist.push({ email: doc.email, ...doc.data() });
+                  });
+                  this.teachers = teacherslist;
+              });
+          },
+          ///
+
             autoRead() {
                 db.collection("students").onSnapshot((querySnapshot) => {
                 var stdlist = [];
