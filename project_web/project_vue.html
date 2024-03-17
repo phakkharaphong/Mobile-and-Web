@@ -30,7 +30,7 @@
                   </template>
                 </v-card-actions>
               
-                <v-card-text class="pa-6">
+               <!-- <v-card-text class="pa-6">
                     <table width="100%" >
                         <thead>
                           <tr>
@@ -59,7 +59,7 @@
                           </tr>
                         </tbody>
                       </table>
-                </v-card-text>
+                </v-card-text>-->
                 <v-card-actions>
                    <!-- <v-btn @click="readData()">Read Data (get)</v-btn>
                     <v-btn @click="autoRead()">Auto Read (onSnapshot)</v-btn>-->
@@ -72,7 +72,10 @@
                     <div v-if="user">
                       <v-btn @click="google_logout()" v-if="user"> Logout</v-btn>   
                       <div v-for="(s) in students">
-                        <v-btn v-if="user.email == s.email"><a href="test.html">Next for students</a></v-btn>
+                        <v-btn v-if="user.email == s.email"><a href="students_home.html">Next for students</a></v-btn>
+                      </div> 
+                      <div v-for="(t) in teachers">
+                        <v-btn v-if="user.email == t.email"><a href="teachers_home.html">Next for Teachers</a></v-btn>
                       </div>   
                     </div>
                          
