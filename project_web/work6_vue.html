@@ -25,7 +25,7 @@
                      </div>
                      <div class="pa-2">
                         {{user.displayName}}<br />
-                        {{user.email}}<br />
+                        {{user.email}}<br/>
                      </div>
                  </template>
               </v-card-actions>
@@ -97,7 +97,7 @@
                 {{user.email}}<br />
             </div>
         </template>
-        <v-btn @click="google_login()"  v-if="!user"> Login</v-btn>
+        <v-btn @click="google_login()"  v-if="!user"><a href="/project_web/test.html">Login</a></v-btn>
         <v-btn @click="google_logout()" v-if="user"> Logout</v-btn>
         </v-card-actions>
         <div>{{ustudent}}</div>
@@ -122,7 +122,7 @@
       const app = Vue.createApp({
         data() {
           return {
-            title: "Work 6:  เรียกใช้ฐานข้อมูล Firebase ด้วย VueJS",
+            title: "Project:  เช็คชื่อจากฐานข้อมูล",
             footer: "ระบุ รหัส ชื่อ-สกุล สาขา",
             students: [],
             editstd: {},
