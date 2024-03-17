@@ -15,6 +15,333 @@
     <title>Teachers Home Page</title>
 </head>
 <body>
+    <div id = "app">
+        <v-app>
+            <v-container>
+                <v-card>
+                    <v-card-title class="bg-blue-grey">{{title}}</v-card-title>
+                      <v-card-actions >
+                        <template v-if="user">
+                          <div class="pa-2">
+                              <v-avatar><img :src="user.photoURL" /></v-avatar>
+                          </div>
+                          <div class="pa-2">
+                              {{user.displayName}}<br />
+                              {{user.email}}<br/>
+                          </div>
+                      </template>
+                    </v-card-actions>
+                  
+                    <v-card-text class="pa-6">
+                        <table width="100%" >
+                            <thead>
+                              <tr>
+                                <td>รหัส</td>
+                                <td>คำนำหน้า</td>
+                                <td>ชื่อ</td>
+                                <td>สกุล</td>
+                                <td>Email</td>
+                                <td>section</td>
+                                <td>edit</td>
+                                <td>deleteData</td>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr v-for="(s) in students">
+                                <td>{{s.id}}</td>
+                                <td>{{s.title}}</td>
+                                <td>{{s.fname}}</td>
+                                <td>{{s.lname}}</td>
+                                <td>{{s.email}}</td>
+                                <td>{{s.section}}</td>
+                                <td>
+                                    <v-btn @click="edit(s)"><v-icon icon="mdi-account-edit"></v-icon></v-btn>
+                                </td>
+                                <td><v-btn @click="deleteData(s)"><v-icon icon="mdi-account-remove"></v-icon></v-btn></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </v-card-text>
+                    <v-card-actions>
+                        <!--<v-btn @click="readData()">Read Data (get)</v-btn>
+                        <v-btn @click="autoRead()">Auto Read (onSnapshot)</v-btn>-->
+                        <v-btn @click="addData()">Add Data</v-btn>
+                        <v-btn @click="addDataqiz()">เพิ่มคำถาม</v-btn>
+                        <v-btn @click="cheksend()">เช็คคำตอบ</v-btn>
+                    </v-card-actions>
+                    
+                    <v-card-text class="pa-6" v-if="editmode==='เพิ่มนักเรียน'">
+                        <table width="100%" >
+                            <thead>
+                              <tr>
+                                <td>รหัส</td>
+                                <td>คำนำหน้า</td>
+                                <td>ชื่อ</td>
+                                <td>สกุล</td>
+                                <td>Email</td>
+                                <td>section</td>
+                                <td>edit</td>
+                                <td>deleteData</td>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr v-for="(s) in students">
+                                <td>{{s.id}}</td>
+                                <td>{{s.title}}</td>
+                                <td>{{s.fname}}</td>
+                                <td>{{s.lname}}</td>
+                                <td>{{s.email}}</td>
+                                <td>{{s.section}}</td>
+                                <td>
+                                    <v-btn @click="edit(s)"><v-icon icon="mdi-account-edit"></v-icon></v-btn>
+                                </td>
+                                <td><v-btn @click="deleteData(s)"><v-icon icon="mdi-account-remove"></v-icon></v-btn></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </v-card-text>
+    
+                    <v-card-actions>
+                        <v-btn @click="google_login()" v-if="!user"> Login</v-btn>
+                        <div v-if="user">
+                          <v-btn @click="google_logout()" v-if="user"> Logout</v-btn>   
+                          <div v-for="(s) in students">
+                            <v-btn v-if="user.email == s.email"><a href="students_home.html">Next for students</a></v-btn>
+                          </div> 
+                          <div v-for="(t) in teachers">
+                            <v-btn v-if="user.email == t.email"><a href="teachers_home.html">Next for Teachers</a></v-btn>
+                          </div>   
+                        </div>
+                             
+                    </v-card-actions>
+                </v-card>
+                
+                <v-card-text class="pa-6" v-if="editmode==='เช็คคำตอบ'">
+                    <table width="100%" >
+                        <thead>
+                          <tr>
+                            <td>รหัสนักศึกษา</td>
+                            <td>วันเวลา</td>
+                            <td>คำตอบ</td>
+                            <td>ห้อง</td>
+                            <td>หัวข้อ</td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="(c) in checkin">
+                            <td>{{c.id}}</td>
+                            <td>{{c.class_date}}</td>
+                            <td>{{c.qiz_send}}</td>
+                            <td>{{c.room}}</td>
+                            <td>{{c.subject}}</td>
+                            <td>
+                                <v-btn @click="edit(q)"><v-icon icon="mdi-account-edit"></v-icon></v-btn>
+                            </td>
+                            <td><v-btn @click="deleteData(q)"><v-icon icon="mdi-account-remove"></v-icon></v-btn></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </v-card-text>
+
+                <!--แก้ไขข้อมูล - เพิ่มข้อมูล -->
+                <v-card v-if="editmode==='เพิ่มนักเรียน'">
+                    <v-card-text class="pa-6">
+                        <v-card-title class="bg-blue-grey">{{editmode}}</v-card-title>
+                        <v-text-field v-model="editstd.id" label="รหัส"></v-text-field>
+                        <v-combobox v-model="editstd.title" label="คำนำหน้า" :items="['นาย','นางสาว','ด.ช.','ด.ญ','นาง']"></v-combobox>
+                        <v-text-field v-model="editstd.fname" label="ชื่อ"></v-text-field>
+                        <v-text-field v-model="editstd.lname" label="นามสกุล"></v-text-field>
+                        <v-text-field v-model="editstd.email" label="E-mail"></v-text-field>
+                        <v-text-field v-model="editstd.section" label="Section"></v-text-field>
+                   </v-card-text>
+                   <v-card-actions>
+                        <v-btn @click="savedata()">Save</v-btn>
+                        <v-btn @click="editmode=0">Cancel</v-btn>
+                   </v-card-actions>
+                 </v-card>
+
+                 <v-card v-if="editmode==='เพิ่มคำถาม'">
+                    <v-card-text class="pa-6">
+                        <v-card-title class="bg-blue-grey">{{editmode}}</v-card-title>
+                        <v-text-field v-model="editquiz.id" label="รหัส" value="Auto-ID"></v-text-field>
+                        <v-text-field v-model="editquiz.quiz_name" label="คำถาม"></v-text-field>
+                        <v-text-field v-model="editquiz.quiz_cus" label="โพสโดย"></v-text-field>
+                   </v-card-text>
+                   <v-card-actions>
+    
+                        <v-btn @click="saveqiz()">Save</v-btn>
+                        <v-btn @click="editmode=0">Cancel</v-btn>
+                   </v-card-actions>
+                 </v-card>
+
+                          
+              <div class="pa-6 text-center">{{footer}}</div>
+            </v-container>        
+          </v-app>
+    </div>
+    <script>
+        const vuetify = Vuetify.createVuetify();
+        const firebaseConfig = {
+              apiKey: "AIzaSyBfjPLSrQHLScbQqWab3yR2G4J6f56oRd4",
+              authDomain: "web2566-bab78.firebaseapp.com",
+              projectId: "web2566-bab78",
+              storageBucket: "web2566-bab78.appspot.com",
+              messagingSenderId: "789702014075",
+              appId: "1:789702014075:web:d6f118e7440bdbb6d7dede",
+              measurementId: "G-4CFHD6DEW5"
+          };
+          firebase.initializeApp(firebaseConfig);      
+          const db = firebase.firestore();
+  
+        const app = Vue.createApp({
+          data() {
+            return {
+              title: "Project:  เช็คชื่อจากฐานข้อมูล",
+              footer: "ระบุ รหัส ชื่อ-สกุล สาขา",
+              students: [],
+              editstd: {},
+              editquiz: {},
+              quiz: [],
+              editmode: 0,
+              teachers: [],
+              user: null,
+              ustudent: null,
+              checkin:[],
+            };
+          },
+  
+  
+          mounted() {
+              firebase.auth().onAuthStateChanged((user)=>{
+                  if (user) {
+                  this.user = user.toJSON();
+                  }else{
+                  this.user = null;
+              }
+              });
+              db.collection("teachers") .get()
+              .then((querySnapshot) => {
+                  var teacherslist = [];
+                  querySnapshot.forEach((doc) => {
+                    teacherslist.push({ email: doc.email, ...doc.data() });
+                  });
+                  this.teachers = teacherslist;
+              });
+              db.collection("students")
+              .get()
+              .then((querySnapshot) => {
+                  var stdlist = [];
+                  querySnapshot.forEach((doc) => {
+                  stdlist.push({ id: doc.id, ...doc.data() });
+                  });
+                  this.students = stdlist;
+              });
+              db.collection("quiz")
+              .get()
+              .then((querySnapshot) => {
+                  var quizlist = [];
+                  querySnapshot.forEach((doc) => {
+                    quizlist.push({ id: doc.id, ...doc.data() });
+                  });
+                  this.quiz = quizlist;
+              });
+              db.collection("checkin") .get()
+              .then((querySnapshot) => {
+                  var checkinlist = [];
+                  querySnapshot.forEach((doc) => {
+                    checkinlist.push({ id: doc.id, ...doc.data() });
+                  });
+                  this.checkin = checkinlist;
+              });
+              
+          },
+          
+  
+  
+          methods: {
+            computed: {
+                filteredList() {
+                  return this.quiz.filter(post => {
+                    return post.title.toLowerCase().includes(this.search.toLowerCase())
+                  })
+                }
+              },
+              autoRead() {
+                  db.collection("students").onSnapshot((querySnapshot) => {
+                  var stdlist = [];
+                  querySnapshot.forEach((doc) => {
+                      stdlist.push({ id: doc.id, ...doc.data() });
+                  });
+                  this.students = stdlist;
+                  });
+              },
+              addData(){
+                  this.editmode = "เพิ่มนักเรียน";
+                  this.editstd = {};
+              },
+
+              addDataqiz(){
+                this.editmode = "เพิ่มคำถาม";
+                this.editquiz = {};
+                },
+                editqiz(std){
+                    this.editstd = std;
+                    this.editmode = "edit";
+                },
+              edit(std){
+                  this.editstd = std;
+                  this.editmode = "เพิ่มนักเรียน";
+              },
+              cheksend(){
+                this.editmode = "เช็คคำตอบ";
+            },
+              savedata(){
+                      db.collection("students").doc(this.editstd.id).set(this.editstd);
+              },
+              saveqiz(){
+                    db.collection("quiz").doc(this.editquiz.id).set(this.editquiz);
+              },
+              deleteData(std) {
+                  if (confirm("ต้องการลบข้อมูล")) {
+                  db.collection("students").doc(std.id).delete();
+                  }
+              },
+              google_login() {
+              // Using a popup.
+              var provider = new firebase.auth.GoogleAuthProvider();
+              provider.addScope("profile");
+              provider.addScope("email");
+              firebase.auth().signInWithPopup(provider);
+            },
+            google_logout(){
+              if(confirm("Are you sure?")){
+                firebase.auth().signOut();
+                location.reload();
+              }
+            },
+            getstudent(email){
+              db.collection("students")
+                .where("email","==",email)
+                .limit(1)
+                .get()
+                .then(
+                  (querySnapshot) => {
+                   querySnapshot.forEach((doc) => {
+                    this.ustudent = { id: doc.id, ...doc.data() };
+                  });
+                 }
+              );
+            },
+  
+  
+  
+  
+          },
+        });
+        
+        
+        app.use(vuetify).mount("#app");
+      </script>
     
 </body>
 </html>
