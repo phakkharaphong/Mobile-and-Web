@@ -48,7 +48,7 @@
                             </thead>
                             <tbody>
                               <tr v-for="(s) in students">
-                                <td>{{s.id}}</td>
+                                <td>{{s.stdid}}</td>
                                 <td>{{s.title}}</td>
                                 <td>{{s.fname}}</td>
                                 <td>{{s.lname}}</td>
@@ -101,7 +101,7 @@
                         </thead>
                         <tbody>
                           <tr v-for="(c) in checkin">
-                            <td>{{c.id}}</td>
+                            <td>{{c.stdid}}</td>
                             <td>{{c.class_date}}</td>
                             <td>{{c.qiz_send}}</td>
                             <td>{{c.room}}</td>
@@ -142,7 +142,7 @@
                 <v-card v-if="editmode==='เพิ่มนักเรียน'">
                     <v-card-text class="pa-6">
                         <v-card-title class="bg-blue-grey">{{editmode}}</v-card-title>
-                        <v-text-field v-model="editstd.id" label="รหัส"></v-text-field>
+                        <v-text-field v-model="editstd.stdid" label="รหัส"></v-text-field>
                         <v-combobox v-model="editstd.title" label="คำนำหน้า" :items="['นาย','นางสาว','ด.ช.','ด.ญ','นาง']"></v-combobox>
                         <v-text-field v-model="editstd.fname" label="ชื่อ"></v-text-field>
                         <v-text-field v-model="editstd.lname" label="นามสกุล"></v-text-field>
