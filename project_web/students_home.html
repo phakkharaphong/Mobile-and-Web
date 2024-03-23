@@ -39,7 +39,7 @@
                     <v-card v-if="editmode==='แบบฟอร์ม'">
                         <v-card-text class="pa-6">
                             <v-card-title class="bg-blue-grey">{{editmode}}</v-card-title>
-                            <v-text-field v-model="editcheckin.id" label="รหัส" value="user.email" ></v-text-field>
+                            <v-text-field v-model="editcheckin.id" label="รหัส" >{{s.stdid}}</v-text-field>
                             <v-text-field type="datetime-local" v-model="editcheckin.class_date" label="เวลา"></v-text-field>
                             <v-text-field v-model="editcheckin.room" label="ห้อง"></v-text-field>
                             <div  v-for="(q) in quiz" class="pa-2"> 
