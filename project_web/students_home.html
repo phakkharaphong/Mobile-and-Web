@@ -33,7 +33,7 @@
                     </v-card-actions>
 
                     <div  class="pa-2" v-for="(s) in students">
-                       <div v-if="user.email == s.email"> ยินดีต้อนรับคุณ : {{user.displayName}}</div>
+                       <div v-if="user.email == s.email"> ยินดีต้อนรับคุณ : {{s.email}}</div>
                     </div>
 
                     <v-card v-if="editmode==='แบบฟอร์ม'">
