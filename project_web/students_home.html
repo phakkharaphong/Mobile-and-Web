@@ -44,7 +44,7 @@
                             <v-text-field v-model="editcheckin.room" label="ห้อง"></v-text-field>
                             <div  v-for="(q) in quiz" class="pa-2"> 
                                  <h2>
-                                    <h2>{{q.quiz_name}}</h2>
+                                    <h2  v-if="q.qize_status=='เปิด'">{{q.quiz_name}}</h2>
                                 </h2>
                             </div>จงเติมคำตอบลงช่องว่าง: <v-text-field v-model="editcheckin.qiz_send" label="คำตอบ"></v-text-field>
 
