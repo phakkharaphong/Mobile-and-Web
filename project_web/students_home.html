@@ -32,8 +32,8 @@
                       </template>
                     </v-card-actions>
 
-                    <div  class="pa-2">
-                        ยินดีต้อนรับคุณ : 
+                    <div  class="pa-2" v-for="(s) in students">
+                       <div v-if="user.email == s.email"> ยินดีต้อนรับคุณ : {{s.name}}</div>
                     </div>
 
                     <v-card v-if="editmode==='แบบฟอร์ม'">
