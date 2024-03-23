@@ -39,7 +39,7 @@
                     <v-card v-if="editmode==='แบบฟอร์ม'">
                         <v-card-text class="pa-6" >
                             <v-card-title class="bg-blue-grey">{{editmode}}</v-card-title>
-                            <div v-for="(s) in students"><v-text-field  v-if="user.email == s.email" v-model="editcheckin.stdid" label="รหัส" >{{s.stdid}}</v-text-field></div>
+                            <div><v-text-field v-model="editcheckin.stdid" label="รหัสนักศึกษา"></v-text-field></div>
                             <v-text-field type="datetime-local" v-model="editcheckin.class_date" label="เวลา"></v-text-field>
                             <v-text-field v-model="editcheckin.room" label="ห้อง"></v-text-field>
                             <div  v-for="(q) in quiz" class="pa-2"> 
@@ -59,7 +59,7 @@
                     <v-card-actions>
                         <!--<v-btn @click="readData()">Read Data (get)</v-btn>
                         <v-btn @click="autoRead()">Auto Read (onSnapshot)</v-btn>-->
-                        <v-btn @click="sendob()">คลิกเพื่อเช็คชื่อของคุณ</v-btn>
+                        <div  class="pa-2" v-for="(s) in students"><v-btn v-if="user.email == s.email" @click="sendob(s)">คลิกเพื่อเช็คชื่อของคุณ</v-btn></div>
                         <v-btn><a href="project_vue.html"></a> กลับ</v-btn>
                     </v-card-actions>
                     
@@ -191,9 +191,9 @@
                 this.editquiz = quiz;
                 this.editmode = "เพิ่มคำถาม";
             },
-            sendob(){
+            sendob(student){
                 this.editmode = "แบบฟอร์ม";
-                this.editcheckin={};
+                this.editcheckin=student;
             },
               saveqiz_back(){
                     db.collection("checkin").doc(this.editcheckin.id).set(this.editcheckin);
